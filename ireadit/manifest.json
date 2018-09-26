@@ -1,0 +1,36 @@
+{
+  "name": "ireadit",
+  "short_name": "ireadit",
+  "version": "0.1.0",
+  "description": "A browser extension that hides the comment section of link posts on reddit and hacker news if the article has not been read.",
+  "homepage_url": "https://octobanana.com/software/ireadit",
+  "manifest_version": 2,
+  "permissions": ["history"],
+  "background":
+  {
+    "scripts": ["background.js"]
+  },
+  "content_scripts":
+  [
+    {
+      "matches": ["https://news.ycombinator.com/item?id=*"],
+      "js": ["hackernews.js"]
+    },
+    {
+      "matches": ["https://old.reddit.com/r/*/comments/*"],
+      "js": ["reddit-old.js"]
+    },
+    {
+      "matches": ["https://i.reddit.com/r/*/comments/*"],
+      "js": ["reddit-old.js"]
+    },
+    {
+      "matches": ["https://www.reddit.com/r/*/comments/*/.compact"],
+      "js": ["reddit-old.js"]
+    },
+    {
+      "matches": ["https://www.reddit.com/*"],
+      "js": ["reddit.js"]
+    }
+  ]
+}
