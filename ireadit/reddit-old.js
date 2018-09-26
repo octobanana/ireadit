@@ -10,17 +10,17 @@ function init()
 
 function check_link()
 {
-  let ctx = document.getElementsByClassName('thumbnail')[0];
+  let ctx = document.getElementById('siteTable');
+  ctx = ctx.firstChild;
 
   if (! ctx) return;
-  if (ctx.tagName !== 'A') return;
-  if (ctx.href === '') return;
 
-  let regex = RegExp('^(http[s]{0,1}://(?!.*\.reddit.*\.com)[^\r]+)$', 'gi');
-  let match = regex.test(ctx.href);
+  let link = ctx.getAttribute('data-url');
+
+  let regex = RegExp('^http[s]{0,1}://[^\r]+$', 'gi');
+  let match = regex.test(link);
   if (! match) return;
 
-  let link = ctx.href;
   ireadit.link = link;
   check_history(link);
 }
@@ -42,14 +42,14 @@ function check_history(url)
 
 function hide_comments()
 {
-  let ctx = document.getElementsByClassName('thumbnail')[0];
+  let ctx = document.getElementsByClassName('commentarea')[0];
   if (ctx)
   {
     let el_msg =
     el('div', [['id', 'ireadit-note']], '', [
       el('p', [], '', ['Comments Hidden by <a href="https://octobanana.com/software/ireadit" title="ireadit">ireadit</a>: Read the <a href="' + ireadit.link + '" title="' + ireadit.link + '">article</a> to view the comment section, or <a href="" title="view comments" id="ireadit-toggle">click here</a>.'])
     ]);
-    ctx.parentNode.appendChild(el_msg);
+    ctx.insertAdjacentElement("afterend", el_msg);
 
     let toggle = document.getElementById('ireadit-toggle');
     if (toggle)
@@ -63,20 +63,15 @@ function hide_comments()
 
   let el_css = el('style', [['id', 'ireadit-css'], ['type', 'text/css']], `
     #ireadit-note {
-      font-size: 1rem !important;
-      color: inherit !important;
+      padding: 1rem;
+      font-size: 1rem;
     }
     #ireadit-note a {
       cursor: pointer;
       font-weight: bold;
-      color: inherit !important;
     }
     #ireadit-note a:hover {
       text-decoration: underline;
-      color: inherit !important;
-    }
-    #ireadit-note a:visited {
-      color: inherit !important;
     }
     .commentarea {
       display: none !important;
