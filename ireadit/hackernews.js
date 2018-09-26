@@ -59,21 +59,12 @@ function hide_comments()
   }
 
   let el_css = el('style', [['id', 'ireadit-css'], ['type', 'text/css']], `
-    #ireadit-note {
-      font-size: 1rem !important;
-      color: inherit !important;
-    }
     #ireadit-note a {
       cursor: pointer;
       font-weight: bold;
-      color: inherit !important;
     }
     #ireadit-note a:hover {
       text-decoration: underline;
-      color: inherit !important;
-    }
-    #ireadit-note a:visited {
-      color: inherit !important;
     }
     .comment-tree {
       display: none !important;
