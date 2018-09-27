@@ -1,6 +1,8 @@
 # ireadit
 A browser extension that hides the comment section of link posts on __reddit__ and __hacker news__ if the article has not been read.
 
+[Click To Watch The Demo](./demo.mp4)
+
 ## About
 Do you make sure to read the linked article on __reddit__ and __hacker news__ before you read the comments?  
 ... Of course you do!  
